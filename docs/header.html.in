@@ -28,20 +28,6 @@ $mathjax
 $darkmode
 <link href="$relpath^$stylesheet" rel="stylesheet" type="text/css" />
 $extrastylesheet
-<meta name="twitter:image:src" content="https://anstropleuton.github.io/confer/background.png">
-<meta name="twitter:site" content="@anstropleuton">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Confer">
-<meta name="twitter:description" content="Confer is a testing framework for Anstro Pleuton's libraries and programs.">
-<meta property="og:title" content="Confer">
-<meta property="og:description" content="Confer is a testing framework for Anstro Pleuton's libraries and programs.">
-<meta property="og:image" content="https://anstropleuton.github.io/confer/background.png">
-<meta property="og:image:alt" content="Elarun Background for Confer">
-<meta property="og:image:width" content="2560">
-<meta property="og:image:height" content="1600">
-<meta property="og:url" content="https://anstropleuton.github.io/confer">
-<meta property="og:site_name" content="Confer">
-<meta property="og:type" content="object">
 </head>
 <body>
 <!--BEGIN DISABLE_INDEX-->

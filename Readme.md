@@ -18,11 +18,11 @@ If you are not Anstro Pleuton, which you probably are, here is a quick and rough
  1. Setup:
     - Clone this repository.
     ```bash
-    git clone https://github.com/anstropleuton/confer
+    git clone https://github.com/anstropleuton/confer.git
     cd confer
     ```
  2. Dependencies
-    - Close dependencies
+    - Clone/update dependencies.
     ```bash
     git submodule update --init --recursive
     ```
@@ -59,7 +59,10 @@ Check out [Guidelines](Guidelines.md) before you submit your code! Make sure to 
 
 # Credits
 Thanks to [jothepro](https://github.com/jothepro) for the stylesheet [Doxygen Awesome](https://github.com/jothepro/doxygen-awesome-css) for Doxygen.
-Thanks to Nuno Pinheiro (can't find link) for the background [Elarun](background.png). But I did find a [KDE store link](https://store.kde.org/p/1162360/) to the background image. I think you could consider that. If KDE developers are here, I would appreciate your help to find a proper link to the author.
+
+Thanks to Nuno Pinheiro (can't find link) for the background Elarun. But I did find a [KDE store link](https://store.kde.org/p/1162360/) to the background image. I think you could consider that. If KDE developers are here, I would appreciate your help to find a proper link to the author.
+
+Thanks to GLFW for some code in CMake.
 
 # License
 This project is licensed under the terms of MIT License, see [License](License.md).

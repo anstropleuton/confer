@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
 project(confer
-    VERSION 2.0.0.0
+    VERSION 2.0.0.1
     DESCRIPTION "Confer is a testing framework for Anstro Pleuton's libraries and programs."
     LANGUAGES CXX
 )
@@ -23,8 +23,18 @@ configure_file(
     "${CMAKE_CURRENT_BINARY_DIR}/confer.pc"
 )
 configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in"
     "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
+    @ONLY
+)
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/docs/header.html.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/header.html"
+    @ONLY
+)
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/docs/footer.html.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/footer.html"
     @ONLY
 )
 

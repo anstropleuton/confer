@@ -10,10 +10,10 @@ OUTPUT_DIRECTORY       = @DOXYGEN_OUTPUT_DIR@
 INPUT                  = ../include ../Changelog.md ../Guidelines.md ../License.md ../Readme.md
 USE_MDFILE_AS_MAINPAGE = ../Readme.md
 
-HTML_HEADER            = ../doxygen-custom-header.html
-HTML_FOOTER            = ../doxygen-custom-footer.html
-HTML_EXTRA_STYLESHEET  = ../background.css ../doxygen-awesome.css
-HTML_EXTRA_FILES       = ../background.png ../favicon.ico
+HTML_HEADER            = header.html
+HTML_FOOTER            = footer.html
+HTML_EXTRA_STYLESHEET  = ../docs/background.css ../docs/doxygen-awesome.css
+HTML_EXTRA_FILES       = ../docs/background.png ../docs/favicon.ico
 
 GENERATE_TREEVIEW      = YES
 DISABLE_INDEX          = NO

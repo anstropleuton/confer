@@ -53,6 +53,9 @@
 
 #include "confer_config.hpp"
 
+/**
+ *  @brief  Confer version string.
+ */
 inline constinit std::string_view confer_version = CONFER_VERSION;
 
 /**

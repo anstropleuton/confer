@@ -7,6 +7,7 @@ The guidelines starts with a basic general generic regular simple coding style t
 A few things in common
 - Don't abbreviate names that are public APIs. Acronyms are allowed in any case.
 - Don't use single letter names unless it is index of the `for` loop or is related to Mathematics.
+
 Let's get to specific naming conventions:
 
 ### Naming Variables
@@ -262,6 +263,7 @@ static inline constexpr auto helper() -> void;
 
 ### Use `struct` instead of `class`
 I don't like data hiding. I truly believe that user should have complete access to the memory that they have initialized. I want to provide much flexibility, not restrict them.
+
 Note: I will still be calling them "Class" rather than "Structure".
 ```cpp
 struct {

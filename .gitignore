@@ -39,6 +39,3 @@ build
 
 # Clangd cache files
 .cache
-
-# Generated documentation files
-docs

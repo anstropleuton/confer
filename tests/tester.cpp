@@ -1,6 +1,6 @@
 /**
  *  @author  Anstro Pleuton (https://github.com/anstropleuton)
- *  @brief   The main header file for the testing framework.
+ *  @brief   Test the testing framework.
  *
  *  @copyright  Copyright (c) 2024 Anstro Pleuton
  *
