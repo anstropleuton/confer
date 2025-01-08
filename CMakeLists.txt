@@ -13,14 +13,17 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 set(DOXYGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")
+set(PROJECT_INSTALL_DATADIR "${CMAKE_INSTALL_DATADIR}/confer")
 
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/include/confer_config.hpp.in"
     "${CMAKE_CURRENT_BINARY_DIR}/confer_config.hpp"
+    @ONLY
 )
 configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/confer.pc.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/pkgconfig.pc.in"
     "${CMAKE_CURRENT_BINARY_DIR}/confer.pc"
+    @ONLY
 )
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in"
@@ -35,6 +38,11 @@ configure_file(
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/docs/footer.html.in"
     "${CMAKE_CURRENT_BINARY_DIR}/footer.html"
+    @ONLY
+)
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/confer_config.cmake"
     @ONLY
 )
 
@@ -74,7 +82,7 @@ write_basic_package_version_file(
 
 install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/confer_config_version.cmake"
-    DESTINATION "${CMAKE_INSTALL_DATADIR}/confer"
+    DESTINATION ${PROJECT_INSTALL_DATADIR}
 )
 install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/confer.pc"
@@ -88,7 +96,7 @@ install(
 install(
     EXPORT confer_targets
     NAMESPACE confer::
-    DESTINATION "${CMAKE_INSTALL_DATADIR}/confer"
+    DESTINATION ${PROJECT_INSTALL_DATADIR}
 )
 
 # Taken from GLFW
