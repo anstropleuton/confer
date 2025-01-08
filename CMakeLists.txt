@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
 project(confer
-    VERSION 2.0.0.1
+    VERSION 2.0.0.2
     DESCRIPTION "Confer is a testing framework for Anstro Pleuton's libraries and programs."
     LANGUAGES CXX
 )
