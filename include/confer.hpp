@@ -270,7 +270,7 @@ struct test {
 
     /**
      *  @brief  Run the test.
-     *  @return  the number of errors within the test.
+     *  @return  The number of errors within the test.
      */
     [[nodiscard]] inline constexpr auto run() const { return function(); }
 };
@@ -304,7 +304,7 @@ struct test_suite {
 
     /**
      *  @brief  Run all tests.
-     *  @return  Titles and errors count of each failed test.
+     *  @return  The titles and errors count of each failed test.
      */
     [[nodiscard]] inline constexpr auto run()
     {
@@ -336,7 +336,7 @@ struct test_suite {
  *
  *  @param  decor_char   Decoration character for before and after title.
  *  @param  decor_count  Decoration character count.
- *  @return  Decorator function.
+ *  @return  A decorator function.
  */
 [[nodiscard]] inline auto default_pre_runner(
     char        decor_char,
@@ -355,7 +355,7 @@ struct test_suite {
  *
  *  @param  decor_char   Decoration character for before and after title.
  *  @param  decor_count  Decoration character count.
- *  @return  Decorator function.
+ *  @return  A decorator function.
  */
 [[nodiscard]] inline auto default_post_runner(
     char        decor_char,
@@ -372,7 +372,7 @@ struct test_suite {
 
 /**
  *  @brief  Terminate further tests after printing failed test title.
- *  @return  Quitter function.
+ *  @return  A quitter function.
  */
 [[nodiscard]] inline auto default_run_failed_quitter()
 {
@@ -403,7 +403,7 @@ inline auto print_failed_tests(
  *  @brief  Get sum of number of errors in all failed tests.
  *
  *  @param  failed_tests  Failed test results.
- *  @return  number of total errors.
+ *  @return  The number of total errors.
  */
 [[nodiscard]] inline constexpr auto sum_failed_tests_errors(
     const std::vector<std::pair<const test *, std::size_t>> &failed_tests

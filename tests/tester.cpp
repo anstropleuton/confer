@@ -57,3 +57,6 @@ auto main() -> int try
 catch(const std::exception &e)
 {
 }
+catch(...)
+{
+}

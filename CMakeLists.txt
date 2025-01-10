@@ -13,7 +13,6 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 set(DOXYGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")
-set(PROJECT_INSTALL_DATADIR "${CMAKE_INSTALL_DATADIR}/confer")
 
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/include/confer_config.hpp.in"

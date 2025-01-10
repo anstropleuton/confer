@@ -44,7 +44,7 @@
 
 /**
  *  @brief  Test basic assertion.
- *  @return  Number of errors.
+ *  @return  The number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_basic_assertion) { // Test function
     // Test function should begin with CT_BEGIN (even before local variable
@@ -70,7 +70,7 @@
 
 /**
  *  @brief  Test container assertion.
- *  @return  Number of errors.
+ *  @return  The number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_container_assertion) {
     CT_BEGIN;
@@ -141,5 +141,5 @@ auto main() -> int
     std::println("See file assertion_test.log for logs");
 
     // Return the sum of number of errors in each tests that are failed
-    return sum_failed_tests_errors(failed_tests);
+    return sum_failed_tests_errors(failed_tests) != 0;
 }
