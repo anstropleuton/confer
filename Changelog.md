@@ -11,3 +11,7 @@ Restructure the documentations in its own folder.
 ## v2.0.0.2 - Make CMake's files more reusable
 Few CMake files I use in cmake/ folder are mostly reused throughout my project, so rename them to have generic name and configure them with proper name in CMakeLists.txt itself.
 Also fix the uninstall target.
+
+## v2.1.0.0 - Ability to use custom errors class class
+Tweaked the code to allow usage of custom errors class, or type. Useful? Not really.
+Also added example and fixed some stuff.

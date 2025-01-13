@@ -58,44 +58,75 @@
  */
 inline constinit std::string_view confer_version = CONFER_VERSION;
 
+#ifndef CT_ERRORS
 /**
  *  @brief  Errors counter variable name.
  */
 #define CT_ERRORS errors
+#endif // ifndef CT_ERRORS
 
+#ifndef CT_ERRORS_TYPE
 /**
  *  @brief  Errors counter variable type (must provide suffix ++ operator).
  */
 #define CT_ERRORS_TYPE std::size_t
+#endif // ifndef CT_ERRORS_TYPE
 
+#ifndef CT_ERRORS_PARAMS
 /**
  *  @brief  Errors counter default argument.
  */
 #define CT_ERRORS_PARAMS 0
+#endif // ifndef CT_ERRORS_PARAMS
 
+#ifndef CT_INCREMENT_ERRORS
 /**
  *  @brief  Increment error counter.
  */
-#define CT_INCREMENT_ERRORS CT_ERRORS++; do {} while (false)
+#define CT_INCREMENT_ERRORS(errors) errors++; do {} while (false)
+#endif // ifndef CT_INCREMENT_ERRORS
 
+#ifndef CT_ADD_TO_ERRORS
+/**
+ *  @brief  Add number to errors counter.
+ */
+#define CT_ADD_TO_ERRORS(errors, number) \
+errors += number;                        \
+do {} while (false)
+#endif // ifndef CT_ADD_TO_ERRORS
+
+#ifndef CT_HAS_ERRORS
+/**
+ *  @brief  Return true if errors counter accumulated any errors.
+ */
+#define CT_HAS_ERRORS(errors) errors != 0
+#endif
+
+#ifndef CT_BEGIN
 /**
  *  @brief  Begin testing.  Write this just after the function call.
  */
 #define CT_BEGIN                            \
 CT_ERRORS_TYPE CT_ERRORS(CT_ERRORS_PARAMS); \
 do {} while (false)
+#endif // ifndef CT_BEGIN
 
+#ifndef CT_END
 /**
  *  @brief  End testing.  Write this just before ending the function.
  */
 #define CT_END return CT_ERRORS; do {} while (false)
+#endif // ifndef CT_END
 
+#ifndef CT_TESTER_FN
 /**
  *  @brief  Define a tester function.
  */
 #define CT_TESTER_FN(name) \
 auto name() -> CT_ERRORS_TYPE
+#endif // ifndef CT_TESTER_FN
 
+#ifndef CT_ASSERT_CODE_FMT
 /**
  *  @brief  Assert the condition with customized code if asserted and log
  *          message format parameters.
@@ -104,45 +135,57 @@ auto name() -> CT_ERRORS_TYPE
 if (value != expected)                                 \
 {                                                      \
     logln(__VA_ARGS__);                                \
-    CT_INCREMENT_ERRORS;                               \
+    CT_INCREMENT_ERRORS(CT_ERRORS);                    \
     code;                                              \
 }                                                      \
 do {} while (false)
+#endif // ifndef CT_ASSERT_CODE_FMT
 
+#ifndef CT_ASSERT_FMT
 /**
  *  @brief  Assert the condition with customized log message format parameters.
  */
 #define CT_ASSERT_FMT(value, expected, ...) \
 CT_ASSERT_CODE_FMT(value, expected, {}, __VA_ARGS__)
+#endif // ifndef CT_ASSERT_FMT
 
+#ifndef CT_ASSERT_CODE
 /**
  *  @brief  Assert the condition with customized code if asserted.
  */
 #define CT_ASSERT_CODE(value, expected, message, code)                        \
 CT_ASSERT_CODE_FMT(value, expected, code, "{}: {} != {} ({} != {})", message, \
     #value, #expected, value, expected)
+#endif // ifndef CT_ASSERT_CODE
 
+#ifndef CT_ASSERT
 /**
  *  @brief  Assert the condition.
  */
 #define CT_ASSERT(value, expected, message)                                 \
 CT_ASSERT_CODE_FMT(value, expected, {}, "{}: {} != {} ({} != {})", message, \
     #value, #expected, value, expected)
+#endif // ifndef CT_ASSERT
 
+#ifndef CT_ASSERT_END_FMT
 /**
  *  @brief  Assert the condition with customized log message format parameter,
  *          and end the function if assertion failed.
  */
 #define CT_ASSERT_END_FMT(value, expected, ...) \
 CT_ASSERT_CODE_FMT(value, expected, CT_END, __VA_ARGS__)
+#endif // ifndef CT_ASSERT_END_FMT
 
+#ifndef CT_ASSERT_END
 /**
  *  @brief  Assert the condition, end the function if assertion failed.
  */
 #define CT_ASSERT_END(value, expected, message)                        \
 CT_ASSERT_CODE_FMT(value, expected, CT_END, "{}: {} != {} ({} != {})", \
     message, #value, #expected, value, expected)
+#endif // ifndef CT_ASSERT_END
 
+#ifndef CT_ASSERT_SIZE
 /**
  *  @brief  Assert container size.
  */
@@ -150,7 +193,9 @@ CT_ASSERT_CODE_FMT(value, expected, CT_END, "{}: {} != {} ({} != {})", \
 CT_ASSERT_END_FMT(value.size(), expected.size(),       \
     "Invalid size: {}.size() != {}.size() ({} != {})", \
     #value, #expected, value.size(), expected.size())
+#endif // ifndef CT_ASSERT_SIZE
 
+#ifndef CT_ASSERT_ELM
 /**
  *  @brief  Assert the container element.
  */
@@ -158,7 +203,9 @@ CT_ASSERT_END_FMT(value.size(), expected.size(),       \
 CT_ASSERT_FMT(value[i], expected[i],                                         \
     "Invalid element: {}[{}] != {}[{}] ({} != {})", #value, i, #expected, i, \
     value[i], expected[i])
+#endif // ifndef CT_ASSERT_ELM
 
+#ifndef CT_ASSERT_CTR
 /**
  *  @brief  Assert the container.
  */
@@ -169,7 +216,9 @@ for (std::size_t i = 0; i < expected.size(); i++) \
     CT_ASSERT_ELM(value, expected, i);            \
 }                                                 \
 do {} while (false)
+#endif // ifndef CT_ASSERT_CTR
 
+#ifndef CT_ASSERT_SUB_SIZE
 /**
  *  @brief  Assert the nested container size.
  */
@@ -177,7 +226,9 @@ do {} while (false)
 CT_ASSERT_END_FMT(value[i].size(), expected[i].size(),         \
     "Invalid size: {}[{}].size() != {}[{}].size() ({} != {})", \
     #value, i, #expected, i, value[i].size(), expected[i].size())
+#endif // ifndef CT_ASSERT_SUB_SIZE
 
+#ifndef CT_ASSERT_SUB_ELM
 /**
  *  @brief  Assert the nested container element.
  */
@@ -185,7 +236,9 @@ CT_ASSERT_END_FMT(value[i].size(), expected[i].size(),         \
 CT_ASSERT_FMT(value[i1][i2], expected[i1][i2],                              \
     "Invalid element: {}[{}][{}] != {}[{}][{}] ({} != {})", #value, i1, i2, \
     #expected, i1, i2, value[i1][i2], expected[i2][i2])
+#endif // ifndef CT_ASSERT_SUB_ELM
 
+#ifndef CT_ASSERT_SUB_CTR
 /**
  *  @brief  Assert the nested container.
  */
@@ -195,7 +248,10 @@ for (std::size_t j = 0; j < expected[i].size(); j++) \
 {                                                    \
     CT_ASSERT_SUB_ELM(value, expected, i, j);        \
 }                                                    \
+do {} while (false)
+#endif // ifndef CT_ASSERT_SUB_CTR
 
+#ifndef CT_ASSERT_NEST_CTR
 /**
  *  @brief  Assert both container and nested container.
  */
@@ -203,9 +259,10 @@ for (std::size_t j = 0; j < expected[i].size(); j++) \
 CT_ASSERT_SIZE(value, expected);                  \
 for (std::size_t i = 0; i < expected.size(); i++) \
 {                                                 \
-    CT_ASSERT_SUB_CTR(value, expected, i)         \
+    CT_ASSERT_SUB_CTR(value, expected, i);        \
 }                                                 \
 do {} while (false)
+#endif // ifndef CT_ASSERT_NEST_CTR
 
 /**
  *  @brief  Open this file to redirect logging to a file.
@@ -251,7 +308,7 @@ template<typename ... Args>
 /**
  *  @brief  Test the function.
  */
-struct test {
+struct test_case {
 
     /**
      *  @brief  Test title, useful to identify failed tests.
@@ -266,7 +323,7 @@ struct test {
     /**
      *  @brief  The function to test which returns the number of errors.
      */
-    std::function<std::size_t()> function;
+    std::function<CT_ERRORS_TYPE()> function;
 
     /**
      *  @brief  Run the test.
@@ -283,24 +340,24 @@ struct test_suite {
     /**
      *  @brief  All the tests.
      */
-    std::vector<const test *> tests;
+    std::vector<const test_case *> tests;
 
     /**
      *  @brief  Function to execute before a test.
      */
-    std::function<void (const test *)> pre_run;
+    std::function<void (const test_case *)> pre_run;
 
     /**
      *  @brief  Function to execute after a test.
      */
-    std::function<void (const test *, std::size_t)> post_run;
+    std::function<void (const test_case *, CT_ERRORS_TYPE)> post_run;
 
     /**
      *  @brief  Function to execute after a failed test. Return true to stop
      *          further tests.
      *  @note  Also executes @c post_run
      */
-    std::function<bool (const test *, std::size_t)> run_failed;
+    std::function<bool (const test_case *, CT_ERRORS_TYPE)> run_failed;
 
     /**
      *  @brief  Run all tests.
@@ -308,14 +365,15 @@ struct test_suite {
      */
     [[nodiscard]] inline constexpr auto run()
     {
-        std::vector<std::pair<const test *, std::size_t>> failed_tests = {};
+        std::vector<std::pair<const test_case *,
+            CT_ERRORS_TYPE>> failed_tests = {};
         for (auto &test : tests)
         {
             if (pre_run) pre_run(test);
-            std::size_t errors   = test->run();
-            bool        end_test = false;
+            CT_ERRORS_TYPE errors   = test->run();
+            bool           end_test = false;
 
-            if (errors != 0)
+            if (CT_HAS_ERRORS(errors))
             {
                 failed_tests.emplace_back(test, errors);
                 if (run_failed && run_failed(test, errors))
@@ -345,7 +403,7 @@ struct test_suite {
 {
     std::string decor = std::ranges::views::repeat(decor_char, decor_count)
                       | std::ranges::to<std::string>();
-    return [=](const test *test) {
+    return [=](const test_case *test) {
         logln("{} {} {}", decor, test->title, decor);
     };
 }
@@ -364,7 +422,7 @@ struct test_suite {
 {
     std::string decor = std::views::repeat(decor_char, decor_count)
                         | std::ranges::to<std::string>();
-    return [=](const test *test, std::size_t errors) {
+    return [=](const test_case *test, CT_ERRORS_TYPE errors) {
         logln("{} End of {}, {} errors {}\n", decor, test->title, errors,
             decor);
     };
@@ -376,7 +434,7 @@ struct test_suite {
  */
 [[nodiscard]] inline auto default_run_failed_quitter()
 {
-    return [=](const test *test, std::size_t errors) {
+    return [=](const test_case *test, CT_ERRORS_TYPE errors) {
         logln("{} failed, cannot conduct further tests.", test->title);
         return true;
     };
@@ -387,7 +445,8 @@ struct test_suite {
  *  @param  failed_tests  Failed test results.
  */
 inline auto print_failed_tests(
-    const std::vector<std::pair<const test *, std::size_t>> &failed_tests
+    const std::vector<std::pair<const test_case *,
+        CT_ERRORS_TYPE>> &failed_tests
 )
 {
     if (failed_tests.empty()) return;
@@ -406,12 +465,13 @@ inline auto print_failed_tests(
  *  @return  The number of total errors.
  */
 [[nodiscard]] inline constexpr auto sum_failed_tests_errors(
-    const std::vector<std::pair<const test *, std::size_t>> &failed_tests
+    const std::vector<std::pair<const test_case *,
+        CT_ERRORS_TYPE>> &failed_tests
 )
 {
-    std::size_t errors = 0;
+    CT_ERRORS_TYPE errors(CT_ERRORS_PARAMS);
     std::ranges::for_each(failed_tests, [&](const auto &failed_test) {
-        errors += failed_test.second;
+        CT_ADD_TO_ERRORS(errors, failed_test.second);
     });
     return errors;
 }

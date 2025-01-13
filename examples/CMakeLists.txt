@@ -1,5 +1,6 @@
 set(CONFER_EXAMPLES
-    "example"
+    "usage_example"
+    "custom_errors_class"
 )
 
 function(add_example source executable)

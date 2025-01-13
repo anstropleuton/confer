@@ -48,15 +48,9 @@
  */
 auto main() -> int try
 {
-    // ... pending
-    // there isn't much to do here ...
-    // what? test the formatting functions?
-    // maybe...
-    // yea I'll do it later.
+    ///  @todo  Test the tester... if there is anything to test that is...
 }
-catch(const std::exception &e)
-{
-}
-catch(...)
-{
-}
+catch (const std::exception &e)
+{}
+catch (...)
+{}

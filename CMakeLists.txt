@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
 project(confer
-    VERSION 2.0.0.2
+    VERSION 2.1.0.0
     DESCRIPTION "Confer is a testing framework for Anstro Pleuton's libraries and programs."
     LANGUAGES CXX
 )
@@ -96,7 +96,7 @@ write_basic_package_version_file(
 
 install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/confer_config_version.cmake"
-    DESTINATION ${PROJECT_INSTALL_DATADIR}
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/confer"
 )
 install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/confer.pc"
@@ -110,5 +110,5 @@ install(
 install(
     EXPORT confer_targets
     NAMESPACE confer::
-    DESTINATION ${PROJECT_INSTALL_DATADIR}
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/confer"
 )

@@ -99,35 +99,35 @@
     CT_END;
 }
 
-/**
- *  @brief  Run all the assertions.
- *  @return  Zero on success.
- */
+// This example is meant to be a kick-starter to start using my library, but
+// they do not teach everything.  Refer to the documentation for more details
 auto main() -> int
 {
     // Redirect the logs to a file
     log_file.open("assertion_test.log");
 
     test_suite suite = {
-        .pre_run = default_pre_runner('=', 3),
-        .post_run = default_post_runner('=', 3)
+        .pre_run     = default_pre_runner('=',  3),
+        .post_run    = default_post_runner('=', 3)
     };
 
     // Test for each test function
-    test basic_assertion_test = {
-        .title = "Test basic assertion",
+    test_case basic_assertion_test_case = {
+        .title         = "Test basic assertion",
         .function_name = "test_basic_assertion",
-        .function = test_basic_assertion
+        .function      = test_basic_assertion
     };
 
-    test container_assertion_test = {
-        .title = "Test container assertion",
+    test_case container_assertion_test_case = {
+        .title         = "Test container assertion",
         .function_name = "test_container_assertion",
-        .function = test_container_assertion
+        .function      = test_container_assertion
     };
 
-    suite.tests.emplace_back(&basic_assertion_test);
-    suite.tests.emplace_back(&container_assertion_test);
+    suite.tests = {
+        &basic_assertion_test_case,
+        &container_assertion_test_case
+    };
 
     // Pointers of all the failed tests
     auto failed_tests = suite.run();
