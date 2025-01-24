@@ -92,7 +92,6 @@ struct my_error_t {
 
     /**
      *  @brief  Return true if there are any errors accumulated.
-     *  @return  True if errors accumulated.
      */
     [[nodiscard]] inline constexpr auto has_errors() const
     {
@@ -202,14 +201,14 @@ CT_TESTER_FN(test_custom_errors_class) {
 // they do not teach everything.  Refer to the documentation for more details
 auto main() -> int try
 {
-    test_case custom_defines_test_case = {
+    test_case custom_errors_class_test_case = {
         .title         = "Test the new custom my_error_t class",
         .function_name = "test_custom_errors_class",
         .function      = test_custom_errors_class
     };
 
     test_suite suite = {
-        .tests       = { &custom_defines_test_case },
+        .tests       = { &custom_errors_class_test_case },
         .pre_run     = default_pre_runner('='),
         .post_run    = default_post_runner('=')
     };
