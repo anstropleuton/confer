@@ -60,7 +60,7 @@ struct my_error_t {
     }
 
     /**
-     *  @brief  An operator() that would increment errors.
+     *  @brief   An @c operator() that would increment errors.
      *  @return  Reference to self.
      */
     inline constexpr auto operator() () -> my_error_t &
@@ -70,7 +70,7 @@ struct my_error_t {
     }
 
     /**
-     *  @brief  An operator[] that would add to errors.
+     *  @brief   An @c operator[] that would add to errors.
      *  @return  Reference to self.
      */
     inline constexpr auto operator[] (
@@ -82,7 +82,7 @@ struct my_error_t {
     }
 
     /**
-     *  @brief  Get the number of errors.
+     *  @brief   Get the number of errors.
      *  @return  Number of errors.
      */
     [[nodiscard]] inline constexpr auto get_errors() const
@@ -132,14 +132,14 @@ struct my_error_t {
 namespace std {
 
 /**
- *  @brief  Formatter for @c my_error_t .
+ *  @brief   Formatter for @c my_error_t .
  *  @tparam  char_type   Character type.
  */
 template<typename char_type>
 struct formatter<my_error_t, char_type> {
 
     /**
-     *  @brief  Parse the format specifiers.
+     *  @brief   Parse the format specifiers.
      *
      *  @tparam  parse_context  Parse context type.
      *  @param   ctx            Parse context.
@@ -158,7 +158,7 @@ struct formatter<my_error_t, char_type> {
     }
 
     /**
-     *  @brief  Format to string using parsed specifiers.
+     *  @brief   Format to string using parsed specifiers.
      *
      *  @tparam  format_context  Format context type.
      *  @param   error           Custom errors class.

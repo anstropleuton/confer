@@ -270,7 +270,7 @@ do {} while (false)
 extern std::ofstream log_file;
 
 /**
- *  @brief  Log to `std::cout` or provided file.
+ *  @brief   Log to `std::cout` or provided file.
  *
  *  @tparam  Args    Type of arguments.
  *  @param   format  Format specifier.
@@ -288,7 +288,7 @@ template<typename ... Args>
 }
 
 /**
- *  @brief  Log with newline to std::cout or provided file.
+ *  @brief   Log with newline to std::cout or provided file.
  *
  *  @tparam  Args    Type of arguments.
  *  @param   format  Format specifier.
@@ -326,7 +326,7 @@ struct test_case {
     std::function<CT_ERRORS_TYPE()> function;
 
     /**
-     *  @brief  Run the test.
+     *  @brief   Run the test.
      *  @return  The number of errors within the test.
      */
     [[nodiscard]] inline constexpr auto run() const { return function(); }
@@ -355,12 +355,12 @@ struct test_suite {
     /**
      *  @brief  Function to execute after a failed test. Return true to stop
      *          further tests.
-     *  @note  Also executes @c post_run
+     *  @note   Also executes @c post_run
      */
     std::function<bool (const test_case *, CT_ERRORS_TYPE)> run_failed;
 
     /**
-     *  @brief  Run all tests.
+     *  @brief   Run all tests.
      *  @return  The titles and errors count of each failed test.
      */
     [[nodiscard]] inline constexpr auto run()
@@ -390,10 +390,10 @@ struct test_suite {
 };
 
 /**
- *  @brief  Get fancy default pre-run function for decorated title output.
+ *  @brief   Get fancy default pre-run function for decorated title output.
  *
- *  @param  decor_char   Decoration character for before and after title.
- *  @param  decor_count  Decoration character count.
+ *  @param   decor_char   Decoration character for before and after title.
+ *  @param   decor_count  Decoration character count.
  *  @return  A decorator function.
  */
 [[nodiscard]] inline auto default_pre_runner(
@@ -409,10 +409,10 @@ struct test_suite {
 }
 
 /**
- *  @brief  Get fancy default post-run function for decorated title output.
+ *  @brief   Get fancy default post-run function for decorated title output.
  *
- *  @param  decor_char   Decoration character for before and after title.
- *  @param  decor_count  Decoration character count.
+ *  @param   decor_char   Decoration character for before and after title.
+ *  @param   decor_count  Decoration character count.
  *  @return  A decorator function.
  */
 [[nodiscard]] inline auto default_post_runner(
@@ -429,7 +429,7 @@ struct test_suite {
 }
 
 /**
- *  @brief  Terminate further tests after printing failed test title.
+ *  @brief   Terminate further tests after printing failed test title.
  *  @return  A quitter function.
  */
 [[nodiscard]] inline auto default_run_failed_quitter()
@@ -459,9 +459,9 @@ inline auto print_failed_tests(
 }
 
 /**
- *  @brief  Get sum of number of errors in all failed tests.
+ *  @brief   Get sum of number of errors in all failed tests.
  *
- *  @param  failed_tests  Failed test results.
+ *  @param   failed_tests  Failed test results.
  *  @return  The number of total errors.
  */
 [[nodiscard]] inline constexpr auto sum_failed_tests_errors(

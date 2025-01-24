@@ -43,7 +43,7 @@
 #include "confer.hpp"
 
 /**
- *  @brief  Yes, a literal test the tester.
+ *  @brief   Yes, a literal test the tester.
  *  @return  Zero on success.
  */
 auto main() -> int try

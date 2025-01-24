@@ -43,7 +43,7 @@
 #include "confer.hpp"
 
 /**
- *  @brief  Test basic assertion.
+ *  @brief   Test basic assertion.
  *  @return  The number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_basic_assertion) { // Test function
@@ -69,7 +69,7 @@
 }
 
 /**
- *  @brief  Test container assertion.
+ *  @brief   Test container assertion.
  *  @return  The number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_container_assertion) {

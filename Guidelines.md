@@ -158,9 +158,10 @@ Use multi-line comments (`/**/`) with one space before asterisk and two space af
 Use Doxygen-style comments for documentation.
 ```cpp
 /**
- *  @brief  Function description.
- *  @param  a  First parameter.
- *  @param  b  Second parameter.
+ *  @brief   Function description.
+ *
+ *  @param   a  First parameter.
+ *  @param   b  Second parameter.
  *  @return  Return value.
  */
 ```
@@ -175,6 +176,8 @@ Don't use `@return` if the `@brief` describes return.
  */
 auto is_key_pressed(int key) -> bool;
 ```
+
+And try to keep the tags aligned.
 
 ### Punctuations
 Use periods to end the sentence in a document comment, and not in regular comment.
