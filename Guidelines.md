@@ -269,6 +269,13 @@ Always use reference capture for lambda.
 auto lambda = [&]() { /* code */ };
 ```
 
+Also use K&R style for lambda braces.
+```cpp
+auto lambda = [&]() {
+    // code
+}
+```
+
 ### Static Functions
 Mark a function `static` if it is defined in a source file with no declaration in header file. This will make the function private to that source file.
 ```cpp
