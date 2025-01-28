@@ -41,7 +41,7 @@ configure_file(
 )
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/confer_config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/conferConfig.cmake"
     @ONLY
 )
 
@@ -89,26 +89,28 @@ if(CONFER_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
-write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/confer_config_version.cmake"
-    COMPATIBILITY AnyNewerVersion
-)
-
-install(
-    FILES "${CMAKE_CURRENT_BINARY_DIR}/confer_config_version.cmake"
-    DESTINATION "${CMAKE_INSTALL_DATADIR}/confer"
-)
 install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/confer.pc"
     DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
 )
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/conferConfigVersion.cmake"
+    COMPATIBILITY AnyNewerVersion
+)
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/conferConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/conferConfigVersion.cmake"
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/confer"
+)
 install(
     TARGETS confer
-    EXPORT confer_targets
+    EXPORT conferTargets
     FILE_SET HEADERS
 )
 install(
-    EXPORT confer_targets
+    EXPORT conferTargets
     NAMESPACE confer::
     DESTINATION "${CMAKE_INSTALL_DATADIR}/confer"
 )
