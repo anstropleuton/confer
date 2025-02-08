@@ -49,7 +49,7 @@ struct my_error_t {
     /**
      *  @brief  Internal error counter.
      */
-    float errors_count;
+    float errors_count = 0;
 
     /**
      *  @brief  Constructor taking two arguments.
